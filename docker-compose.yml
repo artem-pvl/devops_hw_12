@@ -2,14 +2,14 @@
 version: "3.6"
 services:
 
-  assembly:
-    build: ./assembly
-    image: assembly
+  build:
+    build: ./build
+    image: build
     volumes:
       - artifact:/source/target
 
   db:
-    image: mysql
+    image: mysql:latest
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
@@ -17,6 +17,9 @@ services:
       MYSQL_DATABASE: dd
       MYSQL_USER: acp4pogynvaeidfj
       MYSQL_PASSWORD: jc31d2qyy7h9jv5jn1u9uosjksxzaizw
+    ports:
+      - 3306:3306
+      - 33060:33060
     volumes:
       - dbvolume:/var/lib/mysql
 
@@ -24,10 +27,11 @@ services:
     build: ./prod
     image: prod
     ports:
-      - 50:8080
+      - 80:8080
     volumes:
       - artifact:/usr/local/tomcat/webapps
     depends_on:
+      - build
       - db
 
 volumes:

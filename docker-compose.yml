@@ -17,8 +17,9 @@ services:
       MYSQL_DATABASE: dd
       MYSQL_USER: acp4pogynvaeidfj
       MYSQL_PASSWORD: jc31d2qyy7h9jv5jn1u9uosjksxzaizw
-    app_net:
-      ipv4_address: 192.168.2.175
+    networks:
+      app_net:
+        ipv4_address: 192.168.2.175
     ports:
       - 3306:3306
       - 33060:33060
@@ -28,8 +29,9 @@ services:
   prod:
     build: ./prod
     image: prod
-    app_net:
-      ipv4_address: 192.168.2.176
+    networks:
+      app_net:
+        ipv4_address: 192.168.2.176
     ports:
       - 80:8080
     volumes:

@@ -1,5 +1,5 @@
 ---
-version: "3.6"
+version: "3.9"
 services:
 
   build:
@@ -13,10 +13,12 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     # restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: jsjhdaksjhkdaskjadhsdhb
+      MYSQL_ROOT_PASSWORD: jc31d2qyy7h9jv5jn1u9uosjksxzaizw
       MYSQL_DATABASE: dd
       MYSQL_USER: acp4pogynvaeidfj
       MYSQL_PASSWORD: jc31d2qyy7h9jv5jn1u9uosjksxzaizw
+    app_net:
+      ipv4_address: 192.168.2.175
     ports:
       - 3306:3306
       - 33060:33060
@@ -26,6 +28,8 @@ services:
   prod:
     build: ./prod
     image: prod
+    app_net:
+      ipv4_address: 192.168.2.176
     ports:
       - 80:8080
     volumes:
@@ -33,6 +37,13 @@ services:
     depends_on:
       - build
       - db
+
+networks:
+  app_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: "192.168.2.0/24"
 
 volumes:
   artifact:

@@ -8,6 +8,18 @@ services:
     volumes:
       - artifact:/source/target
 
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      # MYSQL_ROOT_PASSWORD: jsjhdaksjhkdaskjadhsdhb
+      MYSQL_DATABASE: dd
+      MYSQL_USER: acp4pogynvaeidfj
+      MYSQL_PASSWORD: jc31d2qyy7h9jv5jn1u9uosjksxzaizw
+    volumes:
+      - dbvolume:/var/lib/mysql
+
   prod:
     build: ./prod
     image: prod
@@ -15,6 +27,9 @@ services:
       - 50:8080
     volumes:
       - artifact:/usr/local/tomcat/webapps
+    depends_on:
+      - db
 
 volumes:
   artifact:
+  dbvolume:

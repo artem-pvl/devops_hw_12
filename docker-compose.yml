@@ -11,9 +11,9 @@ services:
   db:
     image: mysql:latest
     command: --default-authentication-plugin=mysql_native_password
-    restart: always
+    # restart: always
     environment:
-      # MYSQL_ROOT_PASSWORD: jsjhdaksjhkdaskjadhsdhb
+      MYSQL_ROOT_PASSWORD: jsjhdaksjhkdaskjadhsdhb
       MYSQL_DATABASE: dd
       MYSQL_USER: acp4pogynvaeidfj
       MYSQL_PASSWORD: jc31d2qyy7h9jv5jn1u9uosjksxzaizw

@@ -8,13 +8,13 @@ services:
     volumes:
       - artifact:/source/target
 
-  # prod:
-  #   build: ./prod
-  #   image: prod
-  #   ports:
-  #     - 50:8080
-  #   volumes:
-  #     - artifact:/var/lib/tomcat9/webapps
+  prod:
+    build: ./prod
+    image: prod
+    ports:
+      - 50:8080
+    volumes:
+      - artifact:/usr/local/tomcat/webapps
 
 volumes:
   artifact:
